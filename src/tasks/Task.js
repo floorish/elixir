@@ -136,7 +136,7 @@ class Task {
      * @param {object} options
      */
     initSourceMaps(options = {}) {
-        if (! Elixir.config.sourcemaps) {
+        if (! Elixir.config.sourcemaps || (this.options && this.options.preventSourceMaps === true) ) {
             return this.stream();
         }
 
@@ -148,7 +148,7 @@ class Task {
      * Write to the sourcemaps file.
      */
     writeSourceMaps() {
-        if (! Elixir.config.sourcemaps) {
+        if (! Elixir.config.sourcemaps || (this.options && this.options.preventSourceMaps === true) ) {
             return this.stream();
         }
 
@@ -163,7 +163,7 @@ class Task {
      * Minify the relevant CSS or JS files.
      */
     minify() {
-        if (! Elixir.inProduction) {
+        if (! Elixir.inProduction || (this.options && this.options.preventMinify === true)) {
             return this.stream();
         }
 
